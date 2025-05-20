@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Contacto - COINDISSA</title>
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #e7f1ff;
+            --accent-color: #ff6b00;
+            --text-color: #333;
+            --light-gray: #f5f5f5;
+            --border-color: #ddd;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        
+        .form-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 20px;
+        }
+        
+        .form-header img {
+            max-width: 200px;
+            margin-bottom: 15px;
+        }
+        
+        .form-header h1 {
+            color: var(--primary-color);
+            margin: 0;
+            font-size: 24px;
+        }
+        
+        .form-header p {
+            color: #666;
+            margin-top: 10px;
+        }
+        
+        .form-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: var(--light-gray);
+            border-radius: 6px;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .form-section h2 {
+            color: var(--primary-color);
+            margin-top: 0;
+            font-size: 18px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        label.required:after {
+            content: "*";
+            color: #e32;
+            margin-left: 5px;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+            margin-top: 5px;
+        }
+        
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus,
+        select:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.2);
+        }
+        
+        .radio-group {
+            margin-top: 10px;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .radio-option input[type="radio"] {
+            margin-right: 10px;
+        }
+        
+        .category-selector {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .product-category {
+            flex: 0 0 100%;
+            margin-bottom: 15px;
+        }
+        
+        .product-option {
+            background-color: white;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .product-option:hover {
+            border-color: var(--primary-color);
+            background-color: var(--secondary-color);
+        }
+        
+        .product-option input {
+            margin-right: 10px;
+        }
+        
+        .product-icon {
+            width: 30px;
+            height: 30px;
+            background-color: var(--secondary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            color: var(--primary-color);
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .contact-preference {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .contact-option {
+            flex: 1;
+            min-width: 120px;
+            background-color: white;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .contact-option:hover {
+            border-color: var(--primary-color);
+            background-color: var(--secondary-color);
+        }
+        
+        .contact-option.selected {
+            background-color: var(--secondary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .contact-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+            color: var(--primary-color);
+        }
+        
+        button[type="submit"] {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s ease;
+        }
+        
+        button[type="submit"]:hover {
+            background-color: #003d7a;
+        }
+        
+        .progress-container {
+            margin-bottom: 30px;
+        }
+        
+        .progress-bar {
+            background-color: var(--border-color);
+            height: 8px;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        
+        .progress {
+            background-color: var(--primary-color);
+            height: 100%;
+            border-radius: 4px;
+            width: 33%;
+        }
+        
+        .faq-section {
+            margin-top: 40px;
+        }
+        
+        .faq-item {
+            margin-bottom: 15px;
+        }
+        
+        .faq-question {
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+        
+        .faq-answer {
+            margin-top: 8px;
+            padding-left: 20px;
+            color: #555;
+        }
+        
+        .privacy-notice {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .copy-checkbox {
+            margin-top: 20px;
+        }
+        
+        @media (min-width: 768px) {
+            .product-category {
+                flex: 0 0 calc(50% - 15px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-header">
+            <div class="logo">
+                <img src="/api/placeholder/200/70" alt="COINDISSA Logo">
+            </div>
+            <h1>Formulario de Contacto</h1>
+            <p>Gracias por comunicarte con nosotros. Completa el formulario y te responderemos a la brevedad.</p>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-steps">
+                <span>Paso 1 de 3: Información Personal</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+        </div>
+        
+        <form id="contact-form">
+            <!-- Sección 1: Información Personal -->
+            <div class="form-section">
+                <h2>Información Personal</h2>
+                
+                <div class="form-group">
+                    <label for="name" class="required">Nombre completo</label>
+                    <input type="text" id="name" name="name" placeholder="Ingresa tu nombre completo" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email" class="required">Correo electrónico</label>
+                    <input type="email" id="email" name="email" placeholder="ejemplo@dominio.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Teléfono</label>
+                    <input type="text" id="phone" name="phone" placeholder="Ej. +52 55 1234 5678">
+                </div>
+                
+                <div class="form-group">
+                    <label for="postal-code">Código Postal</label>
+                    <input type="text" id="postal-code" name="postal-code" placeholder="Ej. 06500" maxlength="5">
+                </div>
+            </div>
+            
+            <!-- Sección 2: Información de Interés -->
+            <div class="form-section">
+                <h2>Información de Interés</h2>
+                
+                <div class="form-group">
+                    <label class="required">Tengo interés en:</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="interest-buy" name="interest" value="Comprar" required>
+                            <label for="interest-buy">Comprar</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="interest-lease" name="interest" value="Leasing">
+                            <label for="interest-lease">Leasing</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="interest-rent" name="interest" value="Rentar">
+                            <label for="interest-rent">Rentar</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="interest-demo" name="interest" value="Demostración">
+                            <label for="interest-demo">Demostración</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="interest-maintenance" name="interest" value="Solicitar Mantenimiento">
+                            <label for="interest-maintenance">Solicitar Mantenimiento</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="interest-warranty" name="interest" value="Garantía Extendida">
+                            <label for="interest-warranty">Garantía Extendida</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="interest-tech" name="interest" value="Asesoría Técnica">
+                            <label for="interest-tech">Asesoría Técnica</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="interest-promo" name="interest" value="Promociones">
+                            <label for="interest-promo">Promociones</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="required">Producto de interés:</label>
+                    <div class="category-selector">
+                        <div class="product-category">
+                            <h3>Microscopios Leica</h3>
+                            <div class="product-option">
+                                <input type="radio" id="product-1" name="product" value="Leica - Microscopio de Neurocirugía" required>
+                                <div class="product-icon">M</div>
+                                <label for="product-1">Microscopio de Neurocirugía</label>
+                            </div>
+                            <div class="product-option">
+                                <input type="radio" id="product-2" name="product" value="Leica - Microscopio de Oftalmología">
+                                <div class="product-icon">M</div>
+                                <label for="product-2">Microscopio de Oftalmología</label>
+                            </div>
+                            <div class="product-option">
+                                <input type="radio" id="product-3" name="product" value="Leica - Microscopio de Microcirugía General">
+                                <div class="product-icon">M</div>
+                                <label for="product-3">Microscopio de Microcirugía General (Dental, ORL, Plástica)</label>
+                            </div>
+                        </div>
+                        
+                        <div class="product-category">
+                            <h3>Soluciones MicroREC</h3>
+                            <div class="product-option">
+                                <input type="radio" id="product-4" name="product" value="MicroREC">
+                                <div class="product-icon">R</div>
+                                <label for="product-4">MicroREC</label>
+                            </div>
+                            <div class="product-option">
+                                <input type="radio" id="product-5" name="product" value="MicroREC Connect">
+                                <div class="product-icon">R</div>
+                                <label for="product-5">MicroREC Connect</label>
+                            </div>
+                            <div class="product-option">
+                                <input type="radio" id="product-6" name="product" value="MicroREC 3D">
+                                <div class="product-icon">R</div>
+                                <label for="product-6">MicroREC 3D</label>
+                            </div>
+                            <div class="product-option">
+                                <input type="radio" id="product-7" name="product" value="MicroTo4K">
+                                <div class="product-icon">R</div>
+                                <label for="product-7">MicroTo4K</label>
+                            </div>
+                        </div>
+                        
+                        <div class="product-category">
+                            <h3>Ventiladores Inovytec</h3>
+                            <div class="product-option">
+                                <input type="radio" id="product-8" name="product" value="Inovytec - Ventilador pulmonar">
+                                <div class="product-icon">V</div>
+                                <label for="product-8">Ventilador pulmonar</label>
+                            </div>
+                            <div class="product-option">
+                                <input type="radio" id="product-9" name="product" value="Inovytec - Ventilador pulmonar MR">
+                                <div class="product-icon">V</div>
+                                <label for="product-9">Ventilador pulmonar MR (para uso en Resonancia Magnética)</label>
+                            </div>
+                            <div class="product-option">
+                                <input type="radio" id="product-10" name="product" value="Inovytec - Ventilador pulmonar ROBUST">
+                                <div class="product-icon">V</div>
+                                <label for="product-10">Ventilador pulmonar ROBUST (para uso militar)</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sección 3: Preferencias de Contacto -->
+            <div class="form-section">
+                <h2>Preferencias de Contacto</h2>
+                
+                <div class="form-group">
+                    <label class="required">¿Qué medio de contacto prefieres?</label>
+                    <div class="contact-preference">
+                        <div class="contact-option selected">
+                            <div class="contact-icon">✉️</div>
+                            <input type="radio" id="contact-email" name="contact-preference" value="E-mail" checked>
+                            <label for="contact-email">E-mail</label>
+                        </div>
+                        <div class="contact-option">
+                            <div class="contact-icon">📱</div>
+                            <input type="radio" id="contact-whatsapp" name="contact-preference" value="WhatsApp">
+                            <label for="contact-whatsapp">WhatsApp</label>
+                        </div>
+                        <div class="contact-option">
+                            <div class="contact-icon">📞</div>
+                            <input type="radio" id="contact-phone" name="contact-preference" value="Teléfono">
+                            <label for="contact-phone">Teléfono</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="schedule-demo" class="form-group" style="display: none;">
+                    <label>¿Te gustaría agendar una demostración?</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="demo-yes" name="schedule-demo" value="Sí">
+                            <label for="demo-yes">Sí, me interesa</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="demo-no" name="schedule-demo" value="No">
+                            <label for="demo-no">No por el momento</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="required">¿Cómo te enteraste de nosotros?</label>
+                    <select id="source" name="source" required>
+                        <option value="" disabled selected>Selecciona una opción</option>
+                        <option value="Congreso">Congreso</option>
+                        <option value="Google">Google</option>
+                        <option value="WhatsApp">WhatsApp</option>
+                        <option value="LinkedIn">LinkedIn</option>
+                        <option value="Instagram">Instagram</option>
+                        <option value="Facebook">Facebook</option>
+                        <option value="TikTok">TikTok</option>
+                        <option value="YouTube">YouTube</option>
+                        <option value="Email">Email</option>
+                        <option value="Recomendación">Recomendación</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="comments">Detalles adicionales o preguntas</label>
+                    <textarea id="comments" name="comments" rows="4" placeholder="Escribe aquí cualquier detalle adicional, pregunta o requerimiento específico..."></textarea>
+                </div>
+                
+                <div class="copy-checkbox">
+                    <input type="checkbox" id="send-copy" name="send-copy">
+                    <label for="send-copy">Enviarme una copia de mis respuestas</label>
+                </div>
+                
+                <div class="privacy-notice">
+                    <p>La información proporcionada se utilizará sólo con fines de poder responder tu solicitud. Puedes revisar nuestro <a href="http://www.coindissa.com.mx/" target="_blank">aviso de privacidad</a>.</p>
+                </div>
+            </div>
+            
+            <button type="submit">Enviar Solicitud</button>
+        </form>
+    </div>
+    
+    <div class="faq-section">
+        <h2>Preguntas Frecuentes</h2>
+        
+        <div class="faq-item">
+            <div class="faq-question">¿Cuánto tiempo tardan en responder a mi solicitud?</div>
+            <div class="faq-answer">Normalmente respondemos a todas las solicitudes en un plazo de 24-48 horas hábiles.</div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">¿Ofrecen demostraciones virtuales de los equipos?</div>
+            <div class="faq-answer">Sí, contamos con demostraciones virtuales para la mayoría de nuestros equipos. Puedes solicitarla en el formulario.</div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">¿Realizan envíos a toda la República Mexicana?</div>
+            <div class="faq-answer">Sí, nuestros servicios están disponibles en toda la República Mexicana.</div>
+        </div>
+    </div>
+    
+    <script>
+        // Mostrar opción de demostración si se selecciona la opción correspondiente
+        document.querySelectorAll('input[name="interest"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.value === 'Demostración') {
+                    document.getElementById('schedule-demo').style.display = 'block';
+                } else {
+                    document.getElementById('schedule-demo').style.display = 'none';
+                }
+            });
+        });
+        
+        // Cambiar estilo de opciones de contacto al seleccionar
+        document.querySelectorAll('.contact-option').forEach(option => {
+            option.addEventListener('click', function() {
+                // Quitar clase selected de todas las opciones
+                document.querySelectorAll('.contact-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                
+                // Agregar clase selected a la opción clicada
+                this.classList.add('selected');
+                
+                // Marcar el radio button
+                const radio = this.querySelector('input[type="radio"]');
+                radio.checked = true;
+            });
+        });
+    </script>
+</body>
+</html>
